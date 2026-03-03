@@ -3,50 +3,76 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Lời chúc </title>
+
+<!-- QUAN TRỌNG: chống zoom mobile -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<title>Lời chúc</title>
+
 <style>
+*{
+    box-sizing:border-box;
+    -webkit-text-size-adjust:100%; /* iOS không tự phóng chữ */
+}
+
 body{
     margin:0;
+    height:100vh;
     overflow:hidden;
     font-family: Arial, sans-serif;
+
     background:
         radial-gradient(circle at 20% 30%, #ff9acb 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, #ff4d9d 0%, transparent 55%),
         radial-gradient(circle at 70% 80%, #f72585 0%, transparent 55%),
         radial-gradient(circle at 30% 75%, #ffb3d9 0%, transparent 55%),
         linear-gradient(45deg, #ff4d9d, #ff7eb6, #ff9acb);
-    background-size: 200% 200%;
+
+    background-size:200% 200%;
     animation: moveBG 10s ease infinite;
 }
+
+/* animation nền */
 @keyframes moveBG{
     0%{background-position:0% 50%;}
     50%{background-position:100% 50%;}
     100%{background-position:0% 50%;}
 }
+
+/* chữ chính - responsive */
 .message{
     position:fixed;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
+    width:90%;
+
     color:white;
-    font-size:42px;
-    font-weight:bold;
     text-align:center;
+    font-weight:bold;
+
+    /* tự co giãn theo màn hình */
+    font-size: clamp(18px, 6vw, 42px);
+    line-height:1.4;
+
     z-index:10;
+
     text-shadow:
         0 0 10px #fff,
         0 0 25px #ff99c8,
         0 0 45px #ff4d9d,
         0 0 70px #f72585;
 }
+
+/* icon bay */
 .item{
     position:absolute;
-    font-size:28px;
     user-select:none;
     pointer-events:none;
     animation: float linear infinite;
 }
 
+/* animation bay */
 @keyframes float{
     0%{
         transform: translate(0,0) rotate(0deg);
@@ -68,15 +94,10 @@ body{
 <div class="message">
 🌸 Chúc em luôn vui vẻ - hạnh phúc - xinh đẹp - học giỏi - điểm cao - lúc nào cũng cười thật tươi nhé! 🌸
 </div>
+
 <script>
 const icons = ["❤️","💖","💗","💘","🫧","⭐","✨","🌟","💕","💞"];
-const colors = [
-    "#ff4d6d",
-    "#ff99c8",
-    "#ffd6ec",
-    "#f72585",
-    "#fff"
-];
+const colors = ["#ff4d6d","#ff99c8","#ffd6ec","#f72585","#fff"];
 
 function random(min,max){
     return Math.random()*(max-min)+min;
@@ -85,20 +106,28 @@ function random(min,max){
 function createItem(){
     const el = document.createElement("div");
     el.className = "item";
+
     el.innerText = icons[Math.floor(Math.random()*icons.length)];
+
     el.style.left = random(0,window.innerWidth) + "px";
     el.style.top = random(0,window.innerHeight) + "px";
+
     el.style.color = colors[Math.floor(Math.random()*colors.length)];
-    el.style.fontSize = random(18,45) + "px";
-    el.style.setProperty("--x", random(-400,400)+"px");
-    el.style.setProperty("--y", random(-400,400)+"px");
+
+    /* responsive size */
+    el.style.fontSize = random(3,7) + "vw";
+
+    el.style.setProperty("--x", random(-300,300)+"px");
+    el.style.setProperty("--y", random(-300,300)+"px");
+
     el.style.animationDuration = random(4,10)+"s";
+
     document.body.appendChild(el);
     setTimeout(()=> el.remove(),10000);
 }
+
 setInterval(createItem, 80);
 </script>
+
 </body>
-
 </html>
-
