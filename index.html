@@ -4,7 +4,6 @@
 
 <meta charset="UTF-8">
 
-<!-- QUAN TRỌNG: chống zoom mobile -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <title>Lời chúc</title>
@@ -12,7 +11,7 @@
 <style>
 *{
     box-sizing:border-box;
-    -webkit-text-size-adjust:100%; /* iOS không tự phóng chữ */
+    -webkit-text-size-adjust:100%; 
 }
 
 body{
@@ -32,14 +31,14 @@ body{
     animation: moveBG 10s ease infinite;
 }
 
-/* animation nền */
+
 @keyframes moveBG{
     0%{background-position:0% 50%;}
     50%{background-position:100% 50%;}
     100%{background-position:0% 50%;}
 }
 
-/* chữ chính - responsive */
+
 .message{
     position:fixed;
     top:50%;
@@ -51,7 +50,6 @@ body{
     text-align:center;
     font-weight:bold;
 
-    /* tự co giãn theo màn hình */
     font-size: clamp(18px, 6vw, 42px);
     line-height:1.4;
 
@@ -64,7 +62,7 @@ body{
         0 0 70px #f72585;
 }
 
-/* icon bay */
+
 .item{
     position:absolute;
     user-select:none;
@@ -72,7 +70,7 @@ body{
     animation: float linear infinite;
 }
 
-/* animation bay */
+
 @keyframes float{
     0%{
         transform: translate(0,0) rotate(0deg);
@@ -114,7 +112,6 @@ function createItem(){
 
     el.style.color = colors[Math.floor(Math.random()*colors.length)];
 
-    /* responsive size */
     el.style.fontSize = random(3,7) + "vw";
 
     el.style.setProperty("--x", random(-300,300)+"px");
@@ -131,4 +128,5 @@ setInterval(createItem, 80);
 
 </body>
 </html>
+
 
